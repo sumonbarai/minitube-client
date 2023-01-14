@@ -7,13 +7,13 @@ const Pagination = () => {
         <div className="bg-black hover:bg-red-700 text-white px-4 py-1 rounded-full">
           1
         </div>
-        <div className="bg-blue-100 text-blue-600 px-4 py-1 rounded-full">
+        <div className="bg-[#D1D5DB] text-blue-600 px-4 py-1 rounded-full">
           2
         </div>
-        <div className="bg-blue-100 text-blue-600 px-4 py-1 rounded-full">
+        <div className="bg-[#D1D5DB] text-blue-600 px-4 py-1 rounded-full">
           3
         </div>
-        <div className="bg-blue-100 text-blue-600 px-4 py-1 rounded-full">
+        <div className="bg-[#D1D5DB] text-blue-600 px-4 py-1 rounded-full">
           4
         </div>
       </div>
