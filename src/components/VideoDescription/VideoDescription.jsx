@@ -1,11 +1,28 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import deleteIcon from "../../assets/delete.svg";
 import editIcon from "../../assets/edit.svg";
 import likeIcon from "../../assets/like.svg";
 import unLikeIcon from "../../assets/unlike.svg";
+import {
+  likeDecreaseThunk,
+  likeIncreaseThunk,
+} from "../../features/video/videoSlice";
 
 const VideoDescription = ({ video }) => {
-  const { date, description, likes, title, unlikes } = video;
+  const { id, date, description, likes, title, unlikes } = video;
+  const dispatch = useDispatch();
+
+  // handleLike and unlike button
+  const handleLikeBtn = () => {
+    const updatedValue = likes + 1;
+    dispatch(likeIncreaseThunk({ id, updatedValue }));
+  };
+
+  const handleUnLikeBtn = () => {
+    const updatedValue = unlikes + 1;
+    dispatch(likeDecreaseThunk({ id, updatedValue }));
+  };
   return (
     <div>
       <h1 className="text-lg font-semibold tracking-tight text-slate-800">
@@ -17,7 +34,7 @@ const VideoDescription = ({ video }) => {
         </h2>
         {/* <!-- like/unlike --> */}
         <div className="flex gap-10 w-48 mr-5">
-          <div className="flex gap-1">
+          <div className="flex gap-1 cursor-pointer" onClick={handleLikeBtn}>
             <div className="shrink-0">
               <img className="w-5 block" src={likeIcon} alt="Like" />
             </div>
@@ -25,7 +42,7 @@ const VideoDescription = ({ video }) => {
               {likes}
             </div>
           </div>
-          <div className="flex gap-1">
+          <div className="flex gap-1 cursor-pointer" onClick={handleUnLikeBtn}>
             <div className="shrink-0">
               <img className="w-5 block " src={unLikeIcon} alt="Unlike" />
             </div>

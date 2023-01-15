@@ -12,6 +12,7 @@ const Video = () => {
   const dispatch = useDispatch();
   const { isLoading, video } = useSelector((state) => state.video);
 
+  // get single video fetch
   useEffect(() => {
     dispatch(getVideoThunk(id));
   }, [dispatch, id]);
