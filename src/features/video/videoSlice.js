@@ -1,5 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import getVideo, { decreaseLikes, increaseLikes } from "./videoAPI";
+import getVideo, {
+  decreaseLikes,
+  deleteVideo,
+  increaseLikes,
+} from "./videoAPI";
 
 const initialState = {
   isLoading: false,
@@ -26,6 +30,13 @@ export const likeDecreaseThunk = createAsyncThunk(
   "video/likeDecreaseThunk",
   async ({ id, updatedValue }) => {
     const data = await decreaseLikes(id, updatedValue);
+    return data;
+  }
+);
+export const deleteVideoThunk = createAsyncThunk(
+  "video/deleteVideoThunk",
+  async (id) => {
+    const data = await deleteVideo(id);
     return data;
   }
 );
@@ -61,7 +72,15 @@ const videoSlice = createSlice({
         state.video = action.payload;
       })
       .addCase(likeDecreaseThunk.rejected, (state, action) => {
-        console.log(action.error);
+        state.error = action.error;
+      })
+      // decrease like thunk
+      .addCase(deleteVideoThunk.fulfilled, (state, action) => {
+        state.video = {};
+        state.error = "";
+      })
+      .addCase(deleteVideoThunk.rejected, (state, action) => {
+        state.error = action.error;
       });
   },
 });

@@ -16,5 +16,9 @@ export const decreaseLikes = async (id, updatedValue) => {
   });
   return response.data;
 };
+export const deleteVideo = async (id) => {
+  const response = await axiosInstance.delete(`/videos/${id}`);
+  return response.data;
+};
 
 export default getVideo;

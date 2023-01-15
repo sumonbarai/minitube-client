@@ -1,10 +1,12 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import deleteIcon from "../../assets/delete.svg";
 import editIcon from "../../assets/edit.svg";
 import likeIcon from "../../assets/like.svg";
 import unLikeIcon from "../../assets/unlike.svg";
 import {
+  deleteVideoThunk,
   likeDecreaseThunk,
   likeIncreaseThunk,
 } from "../../features/video/videoSlice";
@@ -12,6 +14,7 @@ import {
 const VideoDescription = ({ video }) => {
   const { id, date, description, likes, title, unlikes } = video;
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // handleLike and unlike button
   const handleLikeBtn = () => {
@@ -22,6 +25,11 @@ const VideoDescription = ({ video }) => {
   const handleUnLikeBtn = () => {
     const updatedValue = unlikes + 1;
     dispatch(likeDecreaseThunk({ id, updatedValue }));
+  };
+  // handle delete button
+  const handleDeleteBtn = () => {
+    dispatch(deleteVideoThunk(id));
+    navigate("/", { replace: true });
   };
   return (
     <div>
@@ -64,7 +72,7 @@ const VideoDescription = ({ video }) => {
               Edit
             </a>
           </div>
-          <div className="flex gap-1">
+          <div className="flex gap-1" onClick={() => handleDeleteBtn()}>
             <div className="shrink-0">
               <img className="w-5 block" src={deleteIcon} alt="Delete" />
             </div>
