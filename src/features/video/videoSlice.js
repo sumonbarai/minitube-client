@@ -79,6 +79,7 @@ const videoSlice = createSlice({
         state.video = {};
         state.error = "";
       })
+      // delete thunk
       .addCase(deleteVideoThunk.rejected, (state, action) => {
         state.error = action.error;
       });

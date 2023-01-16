@@ -1,85 +1,40 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { getTagsThunk } from "../features/tags/tagsSlice";
-import { postVideosThunk } from "../features/videos/videosSlice";
 
-const AddVideo = () => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [author, setAuthor] = useState("");
-  const [avatar, setAvatar] = useState("");
-  const [views, setViews] = useState("");
-  const [duration, setDuration] = useState("");
-  const [link, setLink] = useState("");
-  const [thumbnail, setThumbnail] = useState("");
-  const [selectedTags, setSelectedTags] = useState([]);
-
+const UpdateVideo = () => {
+  const [checkBox, setCheckBox] = useState([]);
   const dispatch = useDispatch();
-  const navigation = useNavigate();
   const { tags } = useSelector((state) => state.tags);
-
   useEffect(() => {
     dispatch(getTagsThunk());
   }, [dispatch]);
-  // handle checkBox
   const handleCheckBox = (value) => {
-    const newCheckBox = [...selectedTags];
+    const newCheckBox = [...checkBox];
     const index = newCheckBox.indexOf(value);
     if (index === -1) {
       newCheckBox.push(value);
     } else {
       newCheckBox.splice(index, 1);
     }
-    setSelectedTags(newCheckBox);
-  };
-  // form empty
-  const emptyFrom = () => {
-    setTitle("");
-    setDescription("");
-    setAuthor("");
-    setAvatar("");
-    setViews("");
-    setDuration("");
-    setLink("");
-    setThumbnail("");
-    setSelectedTags("");
+    setCheckBox(newCheckBox);
   };
 
-  // handle post form
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const data = {
-      title: title,
-      description: description,
-      author: author,
-      avatar: avatar,
-      date: new Date().toLocaleDateString(),
-      duration: duration,
-      views: views,
-      link: link,
-      thumbnail: thumbnail,
-      tags: selectedTags,
-      likes: 0,
-      unlikes: 0,
-    };
-
-    if (
-      title &&
-      description &&
-      author &&
-      avatar &&
-      duration &&
-      views &&
-      link &&
-      thumbnail &&
-      selectedTags.length > 0
-    ) {
-      dispatch(postVideosThunk(data));
-      emptyFrom();
-      navigation("/");
-    }
+  const data = {
+    title: "",
+    description: "",
+    author: "",
+    avatar: "",
+    date: "",
+    duration: "",
+    views: "",
+    link: "",
+    thumbnail: "",
+    tags: "",
+    likes: "",
+    unlikes: "",
   };
+
   return (
     <section className="pt-6 pb-20 min-h-[calc(100vh_-_157px)]">
       <div className="max-w-7xl mx-auto px-5 lg:px-0">
@@ -93,7 +48,7 @@ const AddVideo = () => {
             </p>
           </div>
           <div className="mt-5 md:mt-0 md:col-span-2">
-            <form onSubmit={handleSubmit}>
+            <form>
               <div className="shadow overflow-hidden sm:rounded-md">
                 <div className="px-4 py-5 bg-white sm:p-6">
                   <div className="grid grid-cols-6 gap-6">
@@ -105,14 +60,11 @@ const AddVideo = () => {
                         Title
                       </label>
                       <input
-                        required
                         type="text"
                         name="first-name"
                         id="first-name"
                         autoComplete="given-name"
                         className="shadow-sm p-2  mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
                       />
                     </div>
 
@@ -124,14 +76,11 @@ const AddVideo = () => {
                         Author
                       </label>
                       <input
-                        required
                         type="text"
                         name="last-name"
                         id="last-name"
                         autoComplete="family-name"
                         className="shadow-sm p-2  mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                        value={author}
-                        onChange={(e) => setAuthor(e.target.value)}
                       />
                     </div>
 
@@ -144,13 +93,10 @@ const AddVideo = () => {
                       </label>
                       <div className="mt-1">
                         <textarea
-                          required
                           id="about"
                           name="about"
                           rows="3"
                           className="shadow-sm p-2 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                          value={description}
-                          onChange={(e) => setDescription(e.target.value)}
                         ></textarea>
                       </div>
                       <p className="mt-2 text-sm text-gray-500">
@@ -163,17 +109,14 @@ const AddVideo = () => {
                         htmlFor="email-address"
                         className="block text-sm font-medium text-gray-700"
                       >
-                        YouTube Video Emabed src Link
+                        YouTube Video Link
                       </label>
                       <input
-                        required
                         type="text"
                         name="email-address"
                         id="email-address"
                         autoComplete="email"
                         className="shadow-sm p-2  mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                        value={link}
-                        onChange={(e) => setLink(e.target.value)}
                       />
                     </div>
 
@@ -185,36 +128,31 @@ const AddVideo = () => {
                         Thumbnail link
                       </label>
                       <input
-                        required
                         type="text"
                         name="street-address"
                         id="street-address"
                         autoComplete="street-address"
                         className="shadow-sm p-2  mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                        value={thumbnail}
-                        onChange={(e) => setThumbnail(e.target.value)}
-                      />
-                    </div>
-                    <div className="col-span-6">
-                      <label
-                        htmlFor="street-address"
-                        className="block text-sm font-medium text-gray-700"
-                      >
-                        Avatar link
-                      </label>
-                      <input
-                        required
-                        type="text"
-                        name="street-address"
-                        id="street-address"
-                        autoComplete="street-address"
-                        className="shadow-sm p-2  mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                        value={avatar}
-                        onChange={(e) => setAvatar(e.target.value)}
                       />
                     </div>
 
-                    <div className="col-span-6 sm:col-span-3">
+                    <div className="col-span-6 sm:col-span-6 lg:col-span-2">
+                      <label
+                        htmlFor="city"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Date
+                      </label>
+                      <input
+                        type="text"
+                        name="city"
+                        id="city"
+                        autoComplete="address-level2"
+                        className="shadow-sm p-2  mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
+                      />
+                    </div>
+
+                    <div className="col-span-6 sm:col-span-3 lg:col-span-2">
                       <label
                         htmlFor="region"
                         className="block text-sm font-medium text-gray-700"
@@ -222,18 +160,15 @@ const AddVideo = () => {
                         Duration
                       </label>
                       <input
-                        required
                         type="text"
                         name="region"
                         id="region"
                         autoComplete="address-level1"
                         className="shadow-sm p-2  mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                        value={duration}
-                        onChange={(e) => setDuration(e.target.value)}
                       />
                     </div>
 
-                    <div className="col-span-6 sm:col-span-3 ">
+                    <div className="col-span-6 sm:col-span-3 lg:col-span-2">
                       <label
                         htmlFor="postal-code"
                         className="block text-sm font-medium text-gray-700"
@@ -241,17 +176,14 @@ const AddVideo = () => {
                         Views
                       </label>
                       <input
-                        required
-                        type="number"
+                        type="text"
                         name="postal-code"
                         id="postal-code"
                         autoComplete="postal-code"
                         className="shadow-sm p-2  mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                        value={views}
-                        onChange={(e) => setViews(e.target.value)}
                       />
                     </div>
-                    <div className="col-span-6 ">
+                    <div className="col-span-6 sm:col-span-3 lg:col-span-2">
                       <div
                         htmlFor="postal-code"
                         className="block text-sm font-medium text-gray-700"
@@ -269,7 +201,7 @@ const AddVideo = () => {
                               <input
                                 id={title}
                                 type="checkbox"
-                                checked={selectedTags.includes(title)}
+                                checked={checkBox.includes(title)}
                                 onChange={() => handleCheckBox(title)}
                               />
                               <label htmlFor={title} className="cursor-pointer">
@@ -299,4 +231,4 @@ const AddVideo = () => {
   );
 };
 
-export default AddVideo;
+export default UpdateVideo;
