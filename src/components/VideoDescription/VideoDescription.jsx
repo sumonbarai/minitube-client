@@ -31,6 +31,7 @@ const VideoDescription = ({ video }) => {
     dispatch(deleteVideoThunk(id));
     navigate("/", { replace: true });
   };
+
   return (
     <div>
       <h1 className="text-lg font-semibold tracking-tight text-slate-800">
@@ -61,16 +62,16 @@ const VideoDescription = ({ video }) => {
         </div>
         {/* <!-- delete/edit --> */}
         <div className="flex gap-10 w-48">
-          <div className="flex gap-1">
+          <div
+            className="flex gap-1 cursor-pointer"
+            onClick={() => navigate(`/update/${id}`)}
+          >
             <div className="shrink-0">
               <img className="w-5 block" src={editIcon} alt="Edit" />
             </div>
-            <a
-              href="add-video.html"
-              className="text-sm leading-[1.7142857] text-slate-600"
-            >
+            <span className="text-sm leading-[1.7142857] text-slate-600">
               Edit
-            </a>
+            </span>
           </div>
           <div className="flex gap-1" onClick={() => handleDeleteBtn()}>
             <div className="shrink-0">

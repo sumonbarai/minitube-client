@@ -3,6 +3,7 @@ import Main from "./layout/Main";
 import AddVideo from "./pages/AddVideo";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
+import UpdateVideo from "./pages/UpdateVideo";
 import Video from "./pages/Video";
 
 const router = createBrowserRouter([
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: "addVideo",
         element: <AddVideo />,
+      },
+      {
+        path: "update/:id",
+        element: <UpdateVideo />,
       },
       {
         path: "*",

@@ -3,6 +3,7 @@ import getVideo, {
   decreaseLikes,
   deleteVideo,
   increaseLikes,
+  putVideo,
 } from "./videoAPI";
 
 const initialState = {
@@ -15,6 +16,14 @@ export const getVideoThunk = createAsyncThunk(
   "video/getVideoThunk",
   async (id) => {
     const data = await getVideo(id);
+    return data;
+  }
+);
+// updateVideoThunk  thunk
+export const updateVideoThunk = createAsyncThunk(
+  "video/updateVideoThunk",
+  async ({ id, updateData }) => {
+    const data = await putVideo(id, updateData);
     return data;
   }
 );
@@ -82,6 +91,10 @@ const videoSlice = createSlice({
       // delete thunk
       .addCase(deleteVideoThunk.rejected, (state, action) => {
         state.error = action.error;
+      })
+      // update thunk
+      .addCase(updateVideoThunk.fulfilled, (state, action) => {
+        state.video = action.payload;
       });
   },
 });

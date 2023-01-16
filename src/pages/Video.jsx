@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import AllRelatedVideo from "../components/RelatedVideo/AllRelatedVideo";
-import RelatedVideo from "../components/RelatedVideo/RelatedVideo";
+
 import VideoDescription from "../components/VideoDescription/VideoDescription";
 import VideoPlayer from "../components/VideoPlayer/VideoPlayer";
 import { getVideoThunk } from "../features/video/videoSlice";
