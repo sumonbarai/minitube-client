@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 const RelatedVideo = ({ video }) => {
   const { author, date, duration, id, thumbnail, title, views } = video;
   return (
-    <div className="col-span-full lg:col-auto max-h-[570px] overflow-y-auto hover:translate-x-2 duration-700">
+    <div className="col-span-full lg:col-auto max-h-[570px] hover:translate-x-2 duration-700">
       {/* <!-- single related video --> */}
       <Link to={`/video/${id}`}>
-        <div className="w-full flex flex-row gap-2 mb-4">
+        <div className="flex flex-row  gap-2 mb-4">
           <div className="relative w-[168px] h-[94px] flex-none duration-300 hover:scale-[1.03]">
             <span>
               <img src={thumbnail} className="object-cover" alt="video title" />
