@@ -1,21 +1,11 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { filterByAuthor } from "../../features/filter/filterSlice";
 
 const Video = ({ video }) => {
-  const {
-    author,
-    avatar,
-    date,
-    description,
-    duration,
-    id,
-    likes,
-    link,
-    thumbnail,
-    title,
-    unlikes,
-    views,
-  } = video;
+  const dispatch = useDispatch();
+  const { author, avatar, date, duration, id, thumbnail, title, views } = video;
 
   return (
     <div className="col-span-12 sm:col-span-6 md:col-span-3 duration-300 hover:scale-[1.03]">
@@ -43,7 +33,10 @@ const Video = ({ video }) => {
             <Link to={`video/${id}`}>
               <p className="text-slate-900 text-sm font-semibold">{title}</p>
             </Link>
-            <Link className="text-gray-400 text-xs mt-2 hover:text-gray-600">
+            <Link
+              onClick={() => dispatch(filterByAuthor(author))}
+              className="text-gray-400 text-xs mt-2 hover:text-gray-600"
+            >
               {author}
             </Link>
             <p className="text-gray-400 text-xs mt-1">

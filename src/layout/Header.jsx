@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import search from "../assets/search.svg";
 import { GrYoutube } from "react-icons/gr";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { filterBySearch } from "../features/filter/filterSlice";
 
 const Header = () => {
+  const [input, setInput] = useState("");
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (input) {
+      let timer = setTimeout(() => {
+        dispatch(filterBySearch(input));
+      }, 800);
+      return () => clearTimeout(timer);
+    }
+  }, [dispatch, input]);
+
   return (
     <nav className="bg-slate-100 shadow-md">
       <div className="max-w-7xl mx-auto px-5 lg:px-0 flex flex-col gap-1 sm:flex-row justify-between py-3 items-center">
@@ -22,6 +35,8 @@ const Header = () => {
               className="mr-2 p-2 border-transparent"
               type="search"
               name="search"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
               placeholder="Search"
               style={{ outline: "none" }}
             />
