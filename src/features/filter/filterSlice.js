@@ -24,9 +24,14 @@ const filterSlice = createSlice({
     filterBySearch: (state, action) => {
       state.search = action.payload;
     },
+    clearFilter: (state, action) => {
+      state.author = "";
+      state.tags = [];
+      state.search = "";
+    },
   },
 });
 
 export default filterSlice.reducer;
-export const { filterByAuthor, filterByTags, filterBySearch } =
+export const { clearFilter, filterByAuthor, filterByTags, filterBySearch } =
   filterSlice.actions;

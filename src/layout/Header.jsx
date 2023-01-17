@@ -1,22 +1,28 @@
 import React, { useEffect, useState } from "react";
-import search from "../assets/search.svg";
+import searchIcon from "../assets/search.svg";
 import { GrYoutube } from "react-icons/gr";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { filterBySearch } from "../features/filter/filterSlice";
 
 const Header = () => {
-  const [input, setInput] = useState("");
+  const { search } = useSelector((state) => state.filter);
+  const [input, setInput] = useState(search);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
     if (input) {
       let timer = setTimeout(() => {
         dispatch(filterBySearch(input));
+        navigate("/");
       }, 800);
       return () => clearTimeout(timer);
     }
-  }, [dispatch, input]);
+  }, [dispatch, input, navigate]);
 
+  useEffect(() => {
+    setInput(search);
+  }, [search]);
   return (
     <nav className="bg-slate-100 shadow-md">
       <div className="max-w-7xl mx-auto px-5 lg:px-0 flex flex-col gap-1 sm:flex-row justify-between py-3 items-center">
@@ -43,7 +49,7 @@ const Header = () => {
           </form>
           <img
             className="inline h-4 cursor-pointer"
-            src={search}
+            src={searchIcon}
             alt="Search"
           />
         </div>

@@ -13,7 +13,7 @@ const Tag = ({ title }) => {
   return (
     <div
       onClick={() => dispatch(filterByTags(title))}
-      className={`${active}  px-4 py-1 rounded-full cursor-pointer `}
+      className={`${active}  px-4 py-1 rounded-full cursor-pointer capitalize`}
     >
       {title}
     </div>
