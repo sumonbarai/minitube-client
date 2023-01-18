@@ -4,6 +4,8 @@ const initialState = {
   author: "",
   tags: [],
   search: "",
+  page: 1,
+  limit: 8,
 };
 
 const filterSlice = createSlice({
@@ -24,6 +26,9 @@ const filterSlice = createSlice({
     filterBySearch: (state, action) => {
       state.search = action.payload;
     },
+    PaginationFilter: (state, action) => {
+      state.page = action.payload;
+    },
     clearFilter: (state, action) => {
       state.author = "";
       state.tags = [];
@@ -33,5 +38,10 @@ const filterSlice = createSlice({
 });
 
 export default filterSlice.reducer;
-export const { clearFilter, filterByAuthor, filterByTags, filterBySearch } =
-  filterSlice.actions;
+export const {
+  clearFilter,
+  PaginationFilter,
+  filterByAuthor,
+  filterByTags,
+  filterBySearch,
+} = filterSlice.actions;

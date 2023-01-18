@@ -6,11 +6,13 @@ import Video from "./Video";
 const VideoGrid = () => {
   const dispatch = useDispatch();
   const { isLoading, error, videos } = useSelector((state) => state.videos);
-  const { author, tags, search } = useSelector((state) => state.filter);
+  const { author, tags, search, page, limit } = useSelector(
+    (state) => state.filter
+  );
 
   useEffect(() => {
-    dispatch(getVideosThunk({ author, tags, search }));
-  }, [dispatch, author, tags, search]);
+    dispatch(getVideosThunk({ author, tags, search, page, limit }));
+  }, [dispatch, author, tags, search, page, limit]);
 
   // what to render
   let content;

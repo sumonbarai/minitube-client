@@ -5,12 +5,13 @@ const initialState = {
   isLoading: false,
   error: "",
   videos: [],
+  totalNumberOfVideos: 0,
 };
 
 export const getVideosThunk = createAsyncThunk(
   "videos/getVideosThunk",
-  async ({ author, tags, search }) => {
-    const data = await getVideos(author, tags, search);
+  async ({ author, tags, search, page, limit }) => {
+    const data = await getVideos(author, tags, search, page, limit);
     return data;
   }
 );
@@ -33,7 +34,8 @@ const videosSlice = createSlice({
       .addCase(getVideosThunk.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = "";
-        state.videos = action.payload;
+        state.videos = action.payload.data;
+        state.totalNumberOfVideos = action.payload.totalNumberOfData;
       })
       .addCase(getVideosThunk.rejected, (state, action) => {
         state.isLoading = false;

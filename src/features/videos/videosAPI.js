@@ -1,6 +1,6 @@
 import axiosInstance from "../../utils/axios";
 
-const getVideos = async (author, tags, search) => {
+const getVideos = async (author, tags, search, page, limit) => {
   const tagQuery =
     tags.length > 0 ? tags?.map((tag) => `tags_like=${tag}`).join("&") : "";
   const authorQuery = author ? `author_like=${author}` : "";
@@ -8,13 +8,23 @@ const getVideos = async (author, tags, search) => {
 
   let filtering;
   if (tagQuery || authorQuery || searchQuery) {
-    filtering = tagQuery + "&" + authorQuery + "&" + searchQuery;
+    filtering =
+      tagQuery +
+      "&" +
+      authorQuery +
+      "&" +
+      searchQuery +
+      `&_page=${page}&_limit=${limit}`;
   } else {
-    filtering = "";
+    filtering = `_page=${page}&_limit=${limit}`;
   }
 
   const response = await axiosInstance.get(`/videos?${filtering}`);
-  return response.data;
+
+  return {
+    data: response.data,
+    totalNumberOfData: response.headers[`x-total-count`],
+  };
 };
 export const postVideos = async (inputData) => {
   const response = await axiosInstance.post("/videos", inputData);

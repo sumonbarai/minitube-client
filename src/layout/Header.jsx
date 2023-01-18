@@ -31,7 +31,7 @@ const Header = () => {
             <span className="text-4xl">
               <GrYoutube />
             </span>
-            <span className="text-2xl">MiniTube</span>
+            <span className="text-2xl">MiniTubes</span>
           </span>
         </Link>
         {/* <!-- search --> */}

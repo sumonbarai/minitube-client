@@ -11,7 +11,7 @@ const Footer = () => {
             target="_blank"
             rel="noreferrer"
           >
-            MiniTube.Org
+            MiniTubes.Org
           </a>
         </div>
       </div>
