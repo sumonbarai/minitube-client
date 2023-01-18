@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getTagsThunk } from "../features/tags/tagsSlice";
@@ -78,6 +79,7 @@ const AddVideo = () => {
       dispatch(postVideosThunk(data));
       emptyFrom();
       navigation("/");
+      toast.success("Upload Successfully");
     }
   };
   return (

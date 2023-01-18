@@ -6,6 +6,7 @@ import AllRelatedVideo from "../components/RelatedVideo/AllRelatedVideo";
 import VideoDescription from "../components/VideoDescription/VideoDescription";
 import VideoPlayer from "../components/VideoPlayer/VideoPlayer";
 import { getVideoThunk } from "../features/video/videoSlice";
+import Loader from "../shared/Loader";
 
 const Video = () => {
   const { id } = useParams();
@@ -18,9 +19,7 @@ const Video = () => {
   }, [dispatch, id]);
 
   return isLoading ? (
-    <p className="pt-6 pb-20 max-w-7xl mx-auto px-5 lg:px-0 min-h-[300px] text-center">
-      Loading...
-    </p>
+    <Loader />
   ) : (
     <section className="pt-6 pb-20 min-h-[calc(100vh_-_157px)]">
       <div className="mx-auto max-w-7xl px-2 pb-20 min-h-[400px]">

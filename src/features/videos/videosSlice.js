@@ -44,7 +44,8 @@ const videosSlice = createSlice({
       })
       // post video
       .addCase(postVideosThunk.fulfilled, (state, action) => {
-        state.videos.push(action.payload);
+        state.videos.pop();
+        state.videos.unshift(action.payload);
       });
   },
 });

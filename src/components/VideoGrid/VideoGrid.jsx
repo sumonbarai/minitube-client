@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getVideosThunk } from "../../features/videos/videosSlice";
+import Loader from "../../shared/Loader";
 import Video from "./Video";
 
 const VideoGrid = () => {
@@ -9,7 +10,7 @@ const VideoGrid = () => {
   const { author, tags, search, page, limit } = useSelector(
     (state) => state.filter
   );
-
+  console.log(videos);
   useEffect(() => {
     dispatch(getVideosThunk({ author, tags, search, page, limit }));
   }, [dispatch, author, tags, search, page, limit]);
@@ -17,11 +18,7 @@ const VideoGrid = () => {
   // what to render
   let content;
   if (isLoading) {
-    content = (
-      <p className="pt-6 pb-20 max-w-7xl mx-auto px-5 lg:px-0 min-h-[300px] text-center">
-        Loading...
-      </p>
-    );
+    content = <Loader />;
   }
   if (!isLoading && error) {
     content = (

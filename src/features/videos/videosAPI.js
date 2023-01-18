@@ -19,7 +19,9 @@ const getVideos = async (author, tags, search, page, limit) => {
     filtering = `_page=${page}&_limit=${limit}`;
   }
 
-  const response = await axiosInstance.get(`/videos?${filtering}`);
+  const response = await axiosInstance.get(
+    `/videos?${filtering}&_sort=id&_order=desc`
+  );
 
   return {
     data: response.data,

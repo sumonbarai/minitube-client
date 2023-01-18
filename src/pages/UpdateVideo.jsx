@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getTagsThunk } from "../features/tags/tagsSlice";
 import { getVideoThunk, updateVideoThunk } from "../features/video/videoSlice";
+import Loader from "../shared/Loader";
 
 const UpdateVideo = () => {
   const { id } = useParams();
@@ -94,13 +96,13 @@ const UpdateVideo = () => {
       selectedTags.length > 0
     ) {
       dispatch(updateVideoThunk({ id, updateData: data }));
-      emptyFrom();
+      toast.success("Update Successfully");
       // navigation("/");
     }
   };
 
   return isLoading ? (
-    <p className="text-center text-2xl">Loading...</p>
+    <Loader />
   ) : (
     <section className="pt-6 pb-20 min-h-[calc(100vh_-_157px)]">
       <div className="max-w-7xl mx-auto px-5 lg:px-0">
