@@ -53,18 +53,6 @@ const UpdateVideo = () => {
     }
     setSelectedTags(newCheckBox);
   };
-  // form empty
-  const emptyFrom = () => {
-    setTitle("");
-    setDescription("");
-    setAuthor("");
-    setAvatar("");
-    setViews("");
-    setDuration("");
-    setLink("");
-    setThumbnail("");
-    setSelectedTags("");
-  };
 
   // handle post form
   const handleSubmit = (e) => {
@@ -80,8 +68,6 @@ const UpdateVideo = () => {
       link: link,
       thumbnail: thumbnail,
       tags: selectedTags,
-      likes: 0,
-      unlikes: 0,
     };
 
     if (

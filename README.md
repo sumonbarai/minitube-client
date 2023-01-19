@@ -1,46 +1,34 @@
-# Getting Started with Create React App and Redux
+# Minitubes project- Using React-Redux
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+This portfolio project is a web application built using HTML, CSS, JavaScript, React, Redux, redux-toolkit and Tailwind CSS. It showcases the front-end developer's skills and work experience, including past projects and personal information. The project utilizes React for the overall structure and layout, Redux for state management, and Tailwind CSS for styling. It also uses redux-toolkit for making it easier to configure and manage the Redux store. It's a dynamic and interactive platform that demonstrates the developer's abilities and can be used as a tool for finding job opportunities or clients.
 
-## Available Scripts
+### Live Website link
 
-In the project directory, you can run:
+[Live Preview](https://minitubes.netlify.app/)
 
-### `npm start`
+## Screenshots
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+![App Screenshot](https://i.ibb.co/NLcyb7Z/project.png)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Tech Stack
 
-### `npm test`
+**Client:** Html, Css, javaScript, React, Redux, redux-toolkit,tailwind css
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Server:** npm json-server package .
 
-### `npm run build`
+## Features
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Upload video
+- Edit video
+- Delete video
+- filter Features
+- text search
+- tag filter
+- channel filter
+- Clear filter button
+- count like and Unlike
+- Relative tag keyword showing side bar
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Authors
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- [@Sumon barai](https://www.linkedin.com/in/sumonbarai/)

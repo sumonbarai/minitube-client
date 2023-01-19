@@ -10,7 +10,7 @@ const VideoGrid = () => {
   const { author, tags, search, page, limit } = useSelector(
     (state) => state.filter
   );
-  console.log(videos);
+
   useEffect(() => {
     dispatch(getVideosThunk({ author, tags, search, page, limit }));
   }, [dispatch, author, tags, search, page, limit]);

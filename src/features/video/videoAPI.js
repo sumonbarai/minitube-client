@@ -5,7 +5,7 @@ const getVideo = async (id) => {
   return response.data;
 };
 export const putVideo = async (id, updatedDate) => {
-  const response = await axiosInstance.put(`/videos/${id}`, updatedDate);
+  const response = await axiosInstance.patch(`/videos/${id}`, updatedDate);
   return response.data;
 };
 
