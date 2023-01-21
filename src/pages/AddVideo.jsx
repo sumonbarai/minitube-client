@@ -78,7 +78,7 @@ const AddVideo = () => {
     ) {
       dispatch(postVideosThunk(data));
       emptyFrom();
-      navigation("/");
+      navigation("/", { replace: true });
       toast.success("Upload Successfully");
     }
   };

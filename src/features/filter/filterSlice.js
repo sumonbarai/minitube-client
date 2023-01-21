@@ -13,7 +13,7 @@ const filterSlice = createSlice({
   initialState,
   reducers: {
     filterByAuthor: (state, action) => {
-      state.author = action.payload;
+      state.author = action.payload.toLowerCase();
     },
     filterByTags: (state, action) => {
       const index = state.tags.indexOf(action.payload);
@@ -33,6 +33,8 @@ const filterSlice = createSlice({
       state.author = "";
       state.tags = [];
       state.search = "";
+      state.page = 1;
+      state.limit = 12;
     },
   },
 });
